@@ -25,4 +25,4 @@ jobs:
         mvn --version
       shell: bash
     - name: Build with Maven
-      run: mvn -B clean test install
+      run: mvn -B clean install

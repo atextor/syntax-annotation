@@ -19,5 +19,10 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
+    - name: Output build configuration
+      run: |-
+        java --version
+        mvn --version
+      shell: bash
     - name: Build with Maven
-      run: mvn clean test install
+      run: mvn -B clean test install

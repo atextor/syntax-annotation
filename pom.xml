@@ -9,10 +9,47 @@
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
+    <name>syntax-annotation</name>
+    <description>Java compile time syntax check for strings containing other languages</description>
+    <url>https://github.com/atextor/syntax-annotation</url>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Andreas Textor</name>
+            <email>mail@atexor.de</email>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:https://github.com/atextor/syntax-annotation.git</connection>
+        <developerConnection>scm:git:https://github.com/atextor/syntax-annotation.git</developerConnection>
+        <url>https://github.com/atextor/syntax-annotation/tree/main</url>
+    </scm>
+
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <jena-core-version>4.4.0</jena-core-version>
+        <jackson-databind-version>2.13.3</jackson-databind-version>
+        <compile-testing-version>0.19</compile-testing-version>
+        <junit-version>4.13.2</junit-version>
+        <assertj-core-version>3.23.1</assertj-core-version>
+
+        <maven-compiler-plugin-version>3.8.1</maven-compiler-plugin-version>
+        <maven-surefire-plugin-version>3.0.0-M7</maven-surefire-plugin-version>
+        <maven-javadoc-plugin-version>3.3.2</maven-javadoc-plugin-version>
+        <maven-source-plugin-version>3.2.1</maven-source-plugin-version>
+        <nexus-staging-maven-plugin-version>1.6.7</nexus-staging-maven-plugin-version>
+        <maven-gpg-plugin-version>1.5</maven-gpg-plugin-version>
     </properties>
 
     <dependencies>
@@ -20,7 +57,7 @@
         <dependency>
             <groupId>org.apache.jena</groupId>
             <artifactId>jena-core</artifactId>
-            <version>4.4.0</version>
+            <version>${jena-core-version}</version>
             <scope>compile</scope>
             <optional>true</optional>
         </dependency>
@@ -29,7 +66,7 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.13.3</version>
+            <version>${jackson-databind-version}</version>
             <scope>compile</scope>
             <optional>true</optional>
         </dependency>
@@ -38,23 +75,34 @@
         <dependency>
             <groupId>com.google.testing.compile</groupId>
             <artifactId>compile-testing</artifactId>
-            <version>0.19</version>
+            <version>${compile-testing-version}</version>
             <scope>test</scope>
         </dependency>
         <!-- Use junit 4 instead of jupiter because compile-testing requires it -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.13.2</version>
+            <version>${junit-version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
-            <version>3.23.1</version>
+            <version>${assertj-core-version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
 
     <build>
         <pluginManagement>
@@ -62,7 +110,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.8.1</version>
+                    <version>${maven-compiler-plugin-version}</version>
                     <configuration>
                         <source>17</source>
                         <target>17</target>
@@ -123,16 +171,32 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>3.0.0-M7</version>
+                    <version>${maven-surefire-plugin-version}</version>
                     <configuration>
-                        <argLine>--add-exports jdk.compiler/com.sun.tools.javac.tree=de.atextor.syntax.annotation</argLine>
+                        <argLine>--add-exports jdk.compiler/com.sun.tools.javac.tree=de.atextor.syntax.annotation
+                        </argLine>
                         <forkCount>1</forkCount>
                     </configuration>
                 </plugin>
 
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>${maven-source-plugin-version}</version>
+                    <executions>
+                        <execution>
+                            <id>attach-sources</id>
+                            <goals>
+                                <goal>jar-no-fork</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>${maven-javadoc-plugin-version}</version>
                     <executions>
                         <execution>
                             <id>attach-javadocs</id>
@@ -145,17 +209,39 @@
 
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-source-plugin</artifactId>
+                    <artifactId>maven-gpg-plugin</artifactId>
+                    <version>${maven-gpg-plugin-version}</version>
                     <executions>
                         <execution>
-                            <id>attach-sources</id>
+                            <id>sign-artifacts</id>
+                            <phase>verify</phase>
                             <goals>
-                                <goal>jar</goal>
+                                <goal>sign</goal>
                             </goals>
+                            <configuration>
+                                <gpgArguments>
+                                    <arg>--pinentry-mode</arg>
+                                    <arg>loopback</arg>
+                                </gpgArguments>
+                            </configuration>
                         </execution>
                     </executions>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.sonatype.plugins</groupId>
+                    <artifactId>nexus-staging-maven-plugin</artifactId>
+                    <version>${nexus-staging-maven-plugin-version}</version>
+                    <extensions>true</extensions>
+                    <configuration>
+                        <serverId>ossrh</serverId>
+                        <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+                        <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
     </build>
+
+
 </project>

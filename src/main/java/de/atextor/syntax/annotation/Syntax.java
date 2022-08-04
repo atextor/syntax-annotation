@@ -18,5 +18,9 @@ import static java.lang.annotation.ElementType.LOCAL_VARIABLE;
 @Target( { FIELD, LOCAL_VARIABLE } )
 @Retention( RetentionPolicy.SOURCE )
 public @interface Syntax {
+    /**
+     * The checker function that takes validates the syntax of a string literal
+     * @return the checker function
+     */
     Class<? extends Function<String, Optional<String>>> value();
 }

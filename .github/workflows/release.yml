@@ -24,6 +24,7 @@ jobs:
           server-password: OSSRH_TOKEN
           gpg-private-key: ${{ secrets.GPG_SECRET_KEY }}
           gpg-passphrase: GPG_PASSPHRASE
+          overwrite-settings: false
       - name: Output build configuration
         run: |-
           java --version

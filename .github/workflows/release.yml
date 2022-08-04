@@ -36,6 +36,12 @@ jobs:
           mvn versions:commit
       - name: Run tests and build
         run: mvn -B clean install
+      - name: Publish to OSSRH
+        run: mvn -B clean deploy -DskipTests
+        env:
+          OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+          OSSRH_TOKEN: ${{ secrets.OSSRH_TOKEN }}
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
       - name: Create GitHub release
         uses: softprops/action-gh-release@v1
         id: syntax-annotation-release
@@ -49,9 +55,3 @@ jobs:
             **/target/*-${{ github.event.inputs.release_version }}.jar
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Publish to OSSRH
-        run: mvn -B clean deploy -DskipTests
-        env:
-          OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-          OSSRH_TOKEN: ${{ secrets.OSSRH_TOKEN }}
-          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}

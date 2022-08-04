@@ -21,4 +21,4 @@ jobs:
         mvn --version
       shell: bash
     - name: Build with Maven
-      run: mvn -B clean install
+      run: mvn -B clean install -Dgpg.skip=true

@@ -35,7 +35,7 @@ jobs:
           mvn versions:set -DnewVersion=${{ github.event.inputs.release_version }}
           mvn versions:commit
       - name: Run tests and build
-        run: mvn -B clean install
+        run: mvn -B clean install -Dgpg.skip=true
       - name: Publish to OSSRH
         run: mvn -B clean deploy -DskipTests
         env:

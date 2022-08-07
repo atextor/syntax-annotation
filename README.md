@@ -125,7 +125,7 @@ own maven module and add this module as dependency with compile scope to the cod
 function as `@Syntax` argument.
 
 If your check function implementation uses a third party dependency, this dependency must be present
-(at least in compile scope) in the code that uses `@Syntax`. For example, the `JSON** check function
+(at least in compile scope) in the code that uses `@Syntax`. For example, the `JSON` check function
 that is part of syntax-annotation, uses Jackson to do its parsing, which is why you need to have
 Jackson in your dependencies to use this check function.
 

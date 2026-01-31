@@ -1,6 +1,6 @@
 # syntax-annotation
 
-[![build](https://github.com/atextor/syntax-annotation/actions/workflows/build.yml/badge.svg)](https://github.com/atextor/syntax-annotation/actions/workflows/build.yml) [![Maven Central](https://maven-badges.herokuapp.com/maven-central/de.atextor/syntax-annotation/badge.svg)](https://maven-badges.herokuapp.com/maven-central/de.atextor/syntax-annotation) [![License: Apache 2.0](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
+[![build](https://github.com/atextor/syntax-annotation/actions/workflows/build.yml/badge.svg)](https://github.com/atextor/syntax-annotation/actions/workflows/build.yml) ![Maven Central Version](https://img.shields.io/maven-central/v/de.atextor/syntax-annotation) [![License: Apache 2.0](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
 _Make your Java code a little more type safe by adding compile time syntax
 checks for strings containing other languages!_

@@ -38,7 +38,7 @@ import java.util.stream.IntStream;
  * The Java annotation processor that looks for {@link Syntax} annotations on string literals and string fields.
  */
 @SupportedAnnotationTypes( { "de.atextor.syntax.annotation.Syntax" } )
-@SupportedSourceVersion( SourceVersion.RELEASE_17 )
+@SupportedSourceVersion( SourceVersion.RELEASE_25 )
 public class SyntaxProcessor extends AbstractProcessor {
     private final CompilerTaskListener compilerTaskListener = new CompilerTaskListener();
 

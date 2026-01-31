@@ -146,7 +146,7 @@ public class SyntaxProcessorTest {
             .compile( sources );
 
         assertThat( compilation )
-            .hadErrorContaining( "Unresolved prefixed name: :x" )
+            .hadErrorContaining( "Undefined prefix" )
             .inFile( testClass )
             .onLine( 7 );
     }

@@ -34,22 +34,23 @@
     </scm>
 
     <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>25</maven.compiler.source>
+        <maven.compiler.target>25</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <jena-core-version>4.4.0</jena-core-version>
-        <jackson-databind-version>2.13.3</jackson-databind-version>
-        <compile-testing-version>0.19</compile-testing-version>
+        <jena-version>5.6.0</jena-version>
+        <jackson-databind-version>2.21.0</jackson-databind-version>
+        <compile-testing-version>0.23.0</compile-testing-version>
         <junit-version>4.13.2</junit-version>
-        <assertj-core-version>3.23.1</assertj-core-version>
+        <assertj-core-version>3.27.7</assertj-core-version>
 
-        <maven-compiler-plugin-version>3.8.1</maven-compiler-plugin-version>
-        <maven-surefire-plugin-version>3.0.0-M7</maven-surefire-plugin-version>
-        <maven-javadoc-plugin-version>3.3.2</maven-javadoc-plugin-version>
-        <maven-source-plugin-version>3.2.1</maven-source-plugin-version>
-        <nexus-staging-maven-plugin-version>1.6.8</nexus-staging-maven-plugin-version>
-        <maven-gpg-plugin-version>3.0.1</maven-gpg-plugin-version>
+        <maven-compiler-plugin-version>3.14.1</maven-compiler-plugin-version>
+        <maven-surefire-plugin-version>3.5.4</maven-surefire-plugin-version>
+        <maven-javadoc-plugin-version>3.12.0</maven-javadoc-plugin-version>
+        <maven-source-plugin-version>3.4.0</maven-source-plugin-version>
+        <nexus-staging-maven-plugin-version>1.7.0</nexus-staging-maven-plugin-version>
+        <maven-gpg-plugin-version>3.2.8</maven-gpg-plugin-version>
+        <versions-maven-plugin.version>2.21.0</versions-maven-plugin.version>
     </properties>
 
     <dependencies>
@@ -57,7 +58,14 @@
         <dependency>
             <groupId>org.apache.jena</groupId>
             <artifactId>jena-core</artifactId>
-            <version>${jena-core-version}</version>
+            <version>${jena-version}</version>
+            <scope>compile</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.jena</groupId>
+            <artifactId>jena-arq</artifactId>
+            <version>${jena-version}</version>
             <scope>compile</scope>
             <optional>true</optional>
         </dependency>
@@ -111,8 +119,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven-compiler-plugin-version}</version>
                 <configuration>
-                    <source>17</source>
-                    <target>17</target>
+                    <source>25</source>
+                    <target>25</target>
                 </configuration>
                 <executions>
                     <execution>

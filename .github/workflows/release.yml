@@ -14,10 +14,10 @@ jobs:
         with:
           ref: main
           fetch-depth: 0
-      - name: Set up JDK 17
         uses: actions/setup-java@v2
+      - name: Set up JDK 25
         with:
-          java-version: '17'
+          java-version: '25'
           distribution: 'temurin'
           server-id: ossrh
           server-username: OSSRH_USERNAME

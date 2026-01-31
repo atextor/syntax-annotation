@@ -24,7 +24,7 @@ Have the problem reported during compilation directly in your IDE - no IDE plugi
 
 ## Usage
 
-**syntax-annotation** requires Java 17.
+**syntax-annotation** requires Java 25.
 
 Add the following dependency to your Maven `pom.xml`:
 ```xml
@@ -77,15 +77,15 @@ corresponding module. Add the following configuration to your `pom.xml`:
 Currently, **syntax-annotation** provides check functions for the following languages:
 
 * *JSON*: Use `de.atextor.syntax.JSON.class` as argument for `@Syntax`. In order to use this, make sure you have
-  `com.fasterxml.jackson.core:jackson-core:2.13.3` and
-  `com.fasterxml.jackson.core:jackson-databind:2.13.3` in your compile build path, i.e., add the
+  `com.fasterxml.jackson.core:jackson-core:2.21.0` and
+  `com.fasterxml.jackson.core:jackson-databind:2.21.0` in your compile build path, i.e., add the
   corresponding dependency with scope compile if necessary.
 * *Regular Expressions (as recognized by [java.util.regex.Pattern#compile](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/regex/Pattern.html#compile(java.lang.String)))*: Use `de.atextor.syntax.RegExp.class` as argument for `@Syntax`. No additional
   dependencies are required.
 * *XML*: Use `de.atextor.syntax.XML.class` as argument for `@Syntax`. No additional
   dependencies are required.
 * *[RDF/Turtle](https://www.w3.org/TR/turtle/)*: Use `de.atextor.syntax.Turtle.class` as argument for `@Syntax`. In order to use this, make
-  sure you have `org.apache.jena:jena-core:4.4.0` in your compile build path, i.e., add the
+  sure you have `org.apache.jena:jena-arq:5.6.0` in your compile build path, i.e., add the
   corresponding dependency with scope compile if necessary.
 
 ## Custom languages

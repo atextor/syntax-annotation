@@ -49,6 +49,12 @@ public class SyntaxProcessor extends AbstractProcessor {
     private ProcessingEnvironment processingEnvironment;
 
     /**
+     * Default constructor
+     */
+    public SyntaxProcessor() {
+    }
+
+    /**
      * Initialize the annotation processor
      *
      * @param processingEnvironment environment to access facilities the tool framework

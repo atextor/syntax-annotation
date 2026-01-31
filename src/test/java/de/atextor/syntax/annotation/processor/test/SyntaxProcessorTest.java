@@ -138,7 +138,10 @@ public class SyntaxProcessorTest {
         // module optional) in src/main/module-info.java.
         // However, when running this test, we rely on the fact that src/main has been compiled before, so the
         // file must be available in the local maven repository.
-        final List<File> classPath = List.of( mavenArtifact( "org.apache.jena:jena-core:4.4.0" ) );
+        final List<File> classPath = List.of(
+            mavenArtifact( "org.apache.jena:jena-core:5.6.0" ),
+            mavenArtifact( "org.apache.jena:jena-arq:5.6.0" )
+        );
 
         final Compilation compilation = javac()
             .withProcessors( new SyntaxProcessor() )
@@ -172,8 +175,8 @@ public class SyntaxProcessorTest {
         );
 
         final List<File> classPath = List.of(
-            mavenArtifact( "com.fasterxml.jackson.core:jackson-databind:2.13.3" ),
-            mavenArtifact( "com.fasterxml.jackson.core:jackson-core:2.13.3" )
+            mavenArtifact( "com.fasterxml.jackson.core:jackson-databind:2.21.0" ),
+            mavenArtifact( "com.fasterxml.jackson.core:jackson-core:2.21.0" )
         );
 
         final Compilation compilation = javac()

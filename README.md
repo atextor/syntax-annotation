@@ -31,7 +31,7 @@ Add the following dependency to your Maven `pom.xml`:
 <dependency>
   <groupId>de.atextor</groupId>
   <artifactId>syntax-annotation</artifactId>
-  <version>1.0.0</version>
+  <version>1.1.0</version>
   <scope>compile</scope>
 </dependency>
 ```

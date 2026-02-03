@@ -131,6 +131,7 @@ Jackson in your dependencies to use this check function.
 
 ## Release notes
 
+* 1.1.0 Update to Java 25
 * 1.0.0 First release
 
 ## Contact
